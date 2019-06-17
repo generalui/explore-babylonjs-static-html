@@ -35,31 +35,62 @@
         var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
         /******* Add the create scene function ******/
-        var createScene = function () {
+        // var createSceneOriginal = function () {
 
-            // Create the scene space
-            var scene = new BABYLON.Scene(engine);
+        //     // Create the scene space
+        //     var scene = new BABYLON.Scene(engine);
 
-            // Add a camera to the scene and attach it to the canvas
-            var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5), scene);
-            camera.attachControl(canvas, true);
+        //     // Add a camera to the scene and attach it to the canvas
+        //     var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5), scene);
+        //     camera.attachControl(canvas, true);
 
-            // Add lights to the scene
-            var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
-            var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
+        //     // Add lights to the scene
+        //     var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
+        //     var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
 
-            // Add and manipulate meshes in the scene
-            var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
+        //     // Add and manipulate meshes in the scene
+        //     var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
 
-            return scene;
-        };
+        //     return scene;
+        // };
+        // var scene = createSceneOriginal() // Call the original createScene from the BabylonJS web site
         /******* End of the create scene function ******/
 
+        /** Define createScene (based on the example at https://doc.babylonjs.com/#getting-started) **/
+        var createScene = function () {
+          // Create a basic Scene object
+          var scene = new BABYLON.Scene(engine)
+
+          // Create a free camera and set its position to (x:0, y:5, z:10)
+          var camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 5, -10), scene)
+
+          // Target the camera to the scene origin
+          camera.setTarget(BABYLON.Vector3.Zero())
+
+          // Attach the camera to the canvas
+          camera.attachControl(canvas, false)
+
+          // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
+          var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene)
+
+          // Create a built-in "sphere" shape
+          var sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { segments: 16, diameter: 2}, scene)
+
+          // Move the sphere upward 1/2 of its height
+          sphere.position.y = 1
+
+          // Create a built-in "ground" shape
+          var ground = BABYLON.MeshBuilder.CreateGround('ground1', { height: 6, width: 6, subdivisions: 2}, scene)
+
+          // Return the created scene
+          return scene
+        }
         var scene = createScene(); //Call the createScene function
+        /******* End of the create scene function ******/
 
         // Register a render loop to repeatedly render the scene
         engine.runRenderLoop(function () {
-                scene.render();
+          scene.render();
         });
 
         // Watch for browser/canvas resize events

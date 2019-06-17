@@ -11,12 +11,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheRobBrennan/explore-babylonjs-static-html.git"
+    "url": "git+https://github.com/generalui/explore-babylonjs-static-html.git"
   },
   "bugs": {
-    "url": "https://github.com/TheRobBrennan/explore-babylonjs-static-html/issues"
+    "url": "https://github.com/generalui/explore-babylonjs-static-html/issues"
   },
-  "homepage": "https://github.com/TheRobBrennan/explore-babylonjs-static-html#readme",
+  "homepage": "https://github.com/generalui/explore-babylonjs-static-html#readme",
   "dependencies": {
     "live-server": "^1.2.1"
   }

@@ -4,6 +4,7 @@
   "description": "A sample project to explore BabylonJS",
   "main": "index.js",
   "scripts": {
+    "start": "npx live-server --open=src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rob Brennan <rob@therobbrennan.com>",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/TheRobBrennan/explore-babylonjs-static-html/issues"
   },
-  "homepage": "https://github.com/TheRobBrennan/explore-babylonjs-static-html#readme"
+  "homepage": "https://github.com/TheRobBrennan/explore-babylonjs-static-html#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
 }
